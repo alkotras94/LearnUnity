@@ -1,21 +1,23 @@
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Curtain : MonoBehaviour
+namespace Infrastructure
 {
-    public Slider LoadProgressBar;
-    [SerializeField] private Image _image;
-
-    public void Initialize()
+    public class Curtain : MonoBehaviour
     {
-        ResourceRequest imageCurtain = Resources.LoadAsync<Sprite>("Curtain");
-        
-        imageCurtain.completed += _ =>
+        public Slider LoadProgressBar;
+        [SerializeField] private Image _image;
+
+        public void Initialize()
         {
-            _image.sprite = imageCurtain.asset as Sprite;
-            Debug.Log("Curtain loaded");
-        };
-    }
+            ResourceRequest imageCurtain = Resources.LoadAsync<Sprite>("Curtain");
+        
+            imageCurtain.completed += _ =>
+            {
+                _image.sprite = imageCurtain.asset as Sprite;
+                Debug.Log("Curtain loaded");
+            };
+        }
     
+    }
 }
