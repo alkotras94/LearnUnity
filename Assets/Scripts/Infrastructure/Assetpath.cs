@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public static class Assetpath
+namespace Infrastructure
 {
-    public static string Curtain = "Curtain";
+    public static class Assetpath
+    {
+        public static string Curtain = "Curtain";
+    }
 }
