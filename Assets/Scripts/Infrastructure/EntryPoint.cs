@@ -24,15 +24,15 @@ namespace Infrastructure
         
             scene.allowSceneActivation = false;
         
-            float fakeProgress = 0f;
+            float fakeProgress = 0f; // Фейковый прогресс
             while (scene.progress < 0.9f || fakeProgress < 1f)
             {
-                fakeProgress += 0.01f; // скорость увеличения прогресса
+                fakeProgress += 0.01f; // Скорость увеличения прогресса
                 if (curtain.LoadProgressBar != null)
                     curtain.LoadProgressBar.value = Mathf.Min(fakeProgress, 1f);
 
-                await Task.Yield();
-                await Task.Delay(30);
+                await Task.Yield(); // Отдаем управление в главный поток и ждем окончание кадра
+                await Task.Delay(30); // Задержка для видимости прогресс бара
             }
         
             if (curtain.LoadProgressBar != null)
