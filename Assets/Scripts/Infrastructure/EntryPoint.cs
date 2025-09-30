@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,14 +10,18 @@ namespace Infrastructure
         [SerializeField] private Curtain _curtain;
         private string _sceneName = "MenuScene";
 
-        void Start()
+        async void Start()
         {
             Curtain curtain = Instantiate(_curtain);
             curtain.Initialize();
-            StartGame(curtain);
+            await LoadSceneAsync(_sceneName, curtain);
+            Debug.Log("Scene loaded");
         }
-    
-        public async Task StartGame(Curtain curtain) => await LoadSceneAsync(_sceneName, curtain);
+
+        private void Update()
+        {
+            Debug.Log("Update");
+        }
 
         public async Task LoadSceneAsync(string sceneName, Curtain curtain)
         {
@@ -24,15 +29,16 @@ namespace Infrastructure
         
             scene.allowSceneActivation = false;
         
-            float fakeProgress = 0f;
+            float fakeProgress = 0f; // Фейковый прогресс
             while (scene.progress < 0.9f || fakeProgress < 1f)
             {
-                fakeProgress += 0.01f; // скорость увеличения прогресса
+                fakeProgress += 0.01f; // Скорость увеличения прогресса
                 if (curtain.LoadProgressBar != null)
                     curtain.LoadProgressBar.value = Mathf.Min(fakeProgress, 1f);
-
-                await Task.Yield();
-                await Task.Delay(30);
+                
+                Debug.Log("Asynchronous operation");
+                await Task.Yield(); // Отдаем управление в главный поток и ждем окончание кадра. Будет использоваться в реальном проекте
+                //await Task.Delay(30); // Задержка для видимости прогресс бара
             }
         
             if (curtain.LoadProgressBar != null)
