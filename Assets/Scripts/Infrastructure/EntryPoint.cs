@@ -22,6 +22,7 @@ namespace Infrastructure
         {
             Debug.Log("Update");
         }
+        
 
         public async Task LoadSceneAsync(string sceneName, Curtain curtain)
         {

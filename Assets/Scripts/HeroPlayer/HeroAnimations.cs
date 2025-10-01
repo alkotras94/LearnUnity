@@ -65,7 +65,7 @@ namespace HeroPlayer
 
                 while (elapsed < durationMs)
                 {
-                    token.ThrowIfCancellationRequested();
+                    //token.ThrowIfCancellationRequested();
 
                     elapsed += stepMs;
                     float t = Mathf.Clamp01((float)elapsed / durationMs);
