@@ -8,7 +8,6 @@ namespace Infrastructure
 {
     public class EntryPoint : MonoBehaviour
     {
-        public Curtain Curtain;
         private string _sceneName = "MenuScene";
 
         async void Start()
@@ -36,23 +35,18 @@ namespace Infrastructure
             while (scene.progress < 0.9f || fakeProgress < 1f)
             {
                 fakeProgress += 0.01f; // Скорость увеличения прогресса
-                if (Curtain.LoadProgressBar != null)
-                    Curtain.LoadProgressBar.value = Mathf.Min(fakeProgress, 1f);
                 
                 Debug.Log("Asynchronous operation");
                 await Task.Yield(); // Отдаем управление в главный поток и ждем окончание кадра. Будет использоваться в реальном проекте
                 //await Task.Delay(30); // Задержка для видимости прогресс бара
             }
-        
-            if (Curtain.LoadProgressBar != null)
-                Curtain.LoadProgressBar.value = 1f;
+            
         
             scene.allowSceneActivation = true;
         }
 
         public async Task LoadImageAsync()
         {
-            Curtain.Initialize();
             await Task.Yield();
         }
     }
