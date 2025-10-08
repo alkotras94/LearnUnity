@@ -11,9 +11,9 @@ namespace Infrastructure
 {
     public class StatsHolder : MonoBehaviour
     {
-        [SerializeField] private FloatRange damageRange =  new FloatRange(); 
-        [SerializeField] private FloatRange healthRange =  new FloatRange(); 
-        [SerializeField] private IntRange levelRange =  new IntRange(); 
+        [SerializeField] private FloatRange damageRange;
+        [SerializeField] private FloatRange healthRange;
+        [SerializeField] private IntRange levelRange; 
 
         private void Start()
         {
