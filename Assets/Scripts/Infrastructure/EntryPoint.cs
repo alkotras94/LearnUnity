@@ -15,7 +15,7 @@ namespace Infrastructure
             Task t2 = LoadImageAsync();
             Task t1 = LoadSceneAsync(_sceneName);
             
-            await Task.WhenAll(t1, t2);
+            await Task.WhenAll(t1, t2); //Ждем окончания двух асинхронных операций
             
             Debug.Log("Scene loaded");
         }
