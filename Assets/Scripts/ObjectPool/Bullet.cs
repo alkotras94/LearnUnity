@@ -22,7 +22,7 @@ namespace ObjectPool
 
         public void DeInit()
         {
-            // можно сбросить эффекты, отключить партиклы и т.п.
+            //Метод для сброса каких то параметров и очитски памяти
         }
 
         public void SetPool(ObjectPool<Bullet> pool, Transform parent)

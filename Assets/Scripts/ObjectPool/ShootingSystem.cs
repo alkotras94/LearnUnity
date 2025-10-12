@@ -20,8 +20,6 @@ namespace ObjectPool
             if (Input.GetMouseButtonDown(0))
             {
                 Bullet bullet = _bulletPool.Get();
-                //bullet.transform.position = transform.position;
-                //bullet.transform.forward = transform.forward;
                 bullet.Shoot(transform.right);
                 bullet.SetPool(_bulletPool,transform);
             }
